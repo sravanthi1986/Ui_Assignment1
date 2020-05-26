@@ -1,0 +1,83 @@
+<html>
+
+<head>
+<title>Form Validation</title>
+<style>
+/* Style all input fields */
+input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+}
+.content{align:center;}
+.error{color:red;}
+</style>
+<script>
+function validateForm() {
+  debugger;
+  var uname = document.getElementById('uname').value;
+  var phone = document.getElementById('phone').value;
+  var email = document.getElementById('email').value;
+  var pwd = document.getElementById('pwd').value;
+  var userNameRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{5,12})";
+  var passwordRegex = '^([a-zA-Z0-9]){8,20}';
+
+   if (isNaN(phone) || phone.length > 10){
+     document.getElementById("telerror").innerHTML = "Enter 10 numbers only numeric values ";
+     return false;
+   }
+   if(! uname.match(userNameRegex)){
+      document.getElementById("unameerror").innerHTML = "Must be alpha numeric values with min 5 and max 12 characters" ;
+      return false;
+   }
+
+   if(! pwd.match(passwordRegex)){
+      document.getElementById("pwderror").innerHTML = "only alphanumeric values with min 8 and max 20 characters.";
+      return false;
+   }
+
+
+}
+</script>
+</head>
+<body>
+<h1>Hello There</h1>
+<h2>This is form validation uses vanilla JS</h2>
+ <div class="content">
+ 	 <form name="registrationForm" action="#" onsubmit="return validateForm()">
+    <label for="username"><b>Username</b></label>
+    <input type="text" id="uname" name="username" required> <br>
+    <p class="error" id="unameerror"></p>
+
+    <label for="telephone"><b>Telephone</b></label>
+    <input type="text" id="phone" name="telephone" required> <br>
+    <p class="error" id="telerror"></p>
+
+    <label for="email"><b>Email</b></label>
+    <input type="email" id="email" name="email" required> <br>
+    <p class="error" id="emailerror"></p>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" id="pwd" name="password" required> <br>
+    <p class="error" id="pwderror"></p>
+
+    <input type="submit" value="Register" class="registerbtn"></input> <br>
+
+  
+      
+
+    </form>
+ </div>
+
+</body>
+</html>
